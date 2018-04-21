@@ -5,11 +5,14 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.sysecho.entity.UserEntity;
+import com.github.pagehelper.Page;
 
 @Mapper
 public interface UserMapper {
 	
-	List<UserEntity> getAll();
+	Page<UserEntity> getAll();
+	
+	List<UserEntity> findByPage();
 	
 	UserEntity getOne(Long id);
 
@@ -18,5 +21,7 @@ public interface UserMapper {
 	void update(UserEntity user);
 
 	void delete(Long id);
+	
+	void deleteAll();
 
 }

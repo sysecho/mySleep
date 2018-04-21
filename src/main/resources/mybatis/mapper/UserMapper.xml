@@ -18,6 +18,12 @@
        <include refid="Base_Column_List" />
 	   FROM users
     </select>
+    
+    <select id="findByPage" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM users
+    </select>
 
     <select id="getOne" parameterType="java.lang.Long" resultMap="BaseResultMap" >
         SELECT 
@@ -26,12 +32,12 @@
 	   WHERE id = #{id}
     </select>
 
-    <insert id="insert" parameterType="com.example.sysecho.entity.UserEntity" >
+    <insert id="insert" parameterType="com.example.sysecho.entity.UserEntity" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
        INSERT INTO 
        		users
-       		(userName,passWord,user_sex) 
+       		(userName,passWord,user_sex,nick_name) 
        	VALUES
-       		(#{userName}, #{passWord}, #{userSex})
+       		(#{userName}, #{passWord}, #{userSex}, #{nickName})
     </insert>
     
     <update id="update" parameterType="com.example.sysecho.entity.UserEntity" >
@@ -51,5 +57,8 @@
        WHERE 
        		 id =#{id}
     </delete>
-
+	
+	<delete id="deleteAll">
+       DELETE FROM users 
+    </delete>
 </mapper>
