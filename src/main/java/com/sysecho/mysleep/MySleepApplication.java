@@ -7,9 +7,9 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerA
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 
 @SpringBootApplication(exclude = { HibernateJpaAutoConfiguration.class })
-public class SysechoApplication {
+public class MySleepApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SysechoApplication.class, args);
+		SpringApplication.run(MySleepApplication.class, args);
 	}
 }
