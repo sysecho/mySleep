@@ -1,11 +1,18 @@
 package com.sysecho.mysleep.controller;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.Filter;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.Page;
 import com.sysecho.mysleep.entity.UserEntity;
@@ -24,6 +31,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+    private GridFsTemplate gridFsTemplate;
 	
 	@RequestMapping("/hello")
 	public String index(){
@@ -62,6 +72,16 @@ public class UserController {
 			this.userService.insert(user);
 		}
 		return userService.getAll();
+	}
+	
+	@RequestMapping("/upload")
+	public Object upload(MultipartFile file) throws IOException{
+		if (null == file || file.getSize() > 0) {
+			return gridFsTemplate.store(file.getInputStream(), file.getOriginalFilename(), file.getContentType());
+		}else{
+			return "文件为空";
+		}
+		
 	}
 
 }
