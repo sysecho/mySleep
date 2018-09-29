@@ -1,4 +1,4 @@
-package com.example.sysecho.page;
+package com.sysecho.mysleep.page;
 
 import java.io.Serializable;
 import java.util.List;

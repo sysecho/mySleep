@@ -1,10 +1,10 @@
-package com.example.sysecho.properties;
+package com.sysecho.mysleep.properties;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SysechoProperties {
+public class MySleepProperties {
 	@Value("${com.neo.title}")
 	private String title;
 	@Value("${com.neo.description}")

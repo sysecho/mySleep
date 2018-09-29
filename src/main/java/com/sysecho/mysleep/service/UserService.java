@@ -1,12 +1,14 @@
-package com.example.sysecho.service;
+package com.sysecho.mysleep.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.sysecho.entity.UserEntity;
-import com.example.sysecho.mapper.UserMapper;
+
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.sysecho.mysleep.entity.UserEntity;
+import com.sysecho.mysleep.mapper.UserMapper;
 
 @Service
 public class UserService {

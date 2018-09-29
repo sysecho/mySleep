@@ -1,8 +1,8 @@
-package com.example.sysecho.entity;
+package com.sysecho.mysleep.entity;
 
 import java.io.Serializable;
 
-import com.example.sysecho.enums.UserSexEnum;
+import com.sysecho.mysleep.enums.UserSexEnum;
 
 import lombok.Data;
 

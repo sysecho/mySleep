@@ -1,4 +1,4 @@
-package com.example.sysecho.configuration;
+package com.sysecho.mysleep.configuration;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import javax.servlet.annotation.WebInitParam;

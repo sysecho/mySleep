@@ -1,11 +1,11 @@
-package com.example.sysecho.mapper;
+package com.sysecho.mysleep.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.sysecho.entity.UserEntity;
 import com.github.pagehelper.Page;
+import com.sysecho.mysleep.entity.UserEntity;
 
 @Mapper
 public interface UserMapper {

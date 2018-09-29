@@ -1,4 +1,4 @@
-package com.example.sysecho.configuration;
+package com.sysecho.mysleep.configuration;
 
 import java.net.UnknownHostException;
 

@@ -1,4 +1,4 @@
-package com.example.sysecho.controller;
+package com.sysecho.mysleep.controller;
 
 import java.util.List;
 
@@ -7,17 +7,17 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.sysecho.entity.UserEntity;
-import com.example.sysecho.enums.UserSexEnum;
-import com.example.sysecho.properties.SysechoProperties;
-import com.example.sysecho.service.UserService;
 import com.github.pagehelper.Page;
+import com.sysecho.mysleep.entity.UserEntity;
+import com.sysecho.mysleep.enums.UserSexEnum;
+import com.sysecho.mysleep.properties.MySleepProperties;
+import com.sysecho.mysleep.service.UserService;
 
 @RestController
 public class UserController {
 
 	@Autowired
-	private SysechoProperties sysechoProperties;
+	private MySleepProperties mySleepProperties;
 	
 	@Autowired
     StringRedisTemplate stringRedisTemplate;
@@ -28,7 +28,7 @@ public class UserController {
 	@RequestMapping("/hello")
 	public String index(){
 		stringRedisTemplate.opsForValue().set("xiaofei", "小飞机");
-		return stringRedisTemplate.opsForValue().get("xiaofei") + sysechoProperties.getTitle()+sysechoProperties.getDescription();
+		return stringRedisTemplate.opsForValue().get("xiaofei") + mySleepProperties.getTitle()+mySleepProperties.getDescription();
 	}
 	
 	@RequestMapping(value="/users")
