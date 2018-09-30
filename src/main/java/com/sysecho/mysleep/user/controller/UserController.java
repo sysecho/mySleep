@@ -21,6 +21,7 @@ import com.sysecho.mysleep.user.entity.UserEntity;
 import com.sysecho.mysleep.user.service.UserService;
 
 @Controller
+@RequestMapping("user")
 public class UserController {
 
 	@Autowired
