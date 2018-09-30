@@ -1,10 +1,11 @@
 package com.sysecho.mysleep.voice.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.sysecho.mysleep.user.entity.UserEntity;
 import com.sysecho.mysleep.voice.entity.Voice;
 import com.sysecho.mysleep.voice.mapper.VoiceMapper;
 
@@ -30,7 +31,8 @@ public class VoiceService {
 		return this.mapper.selectByPrimaryKey(id);
 	}
 	
-	public List<Voice> selectAll(){
+	public Page<Voice>  findByPage(int pageNo, int pageSize){
+		PageHelper.offsetPage(pageNo, pageSize);
 		return this.mapper.selectAll();
 	}
 }

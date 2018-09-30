@@ -3,8 +3,8 @@ package com.sysecho.mysleep.voice.controller;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.github.pagehelper.Page;
 import com.sysecho.mysleep.response.ResponseCode;
 import com.sysecho.mysleep.response.ResponseData;
 import com.sysecho.mysleep.voice.entity.Voice;
@@ -31,8 +33,9 @@ public class VoiceController {
     private GridFsTemplate gridFsTemplate;
 	
 	@RequestMapping("voices")
-	public @ResponseBody ResponseData voices(){
-		return new ResponseData(true, "请求成功", ResponseCode.success, this.voiceService.selectAll(),1);
+	public @ResponseBody ResponseData voices(int pageNo, int pageSize){
+		Page<Voice> page = voiceService.findByPage(pageNo, pageSize);
+		return new ResponseData(true, "请求成功", ResponseCode.success, page.getResult(),new Integer(String.valueOf(page.getTotal())));
 	}
 	
 	@RequestMapping("remove")
