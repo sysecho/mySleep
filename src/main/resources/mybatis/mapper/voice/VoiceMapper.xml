@@ -10,7 +10,7 @@
     <result column="object_id" jdbcType="VARCHAR" property="objectId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="content_type" jdbcType="VARCHAR" property="contentType" />
-    <result column="size" jdbcType="DOUBLE" property="size" />
+    <result column="size" jdbcType="DECIMAL" property="size" />
     <result column="data_id" jdbcType="VARCHAR" property="dataId" />
     <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
     <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
@@ -42,7 +42,7 @@
       update_by, sort, remark
       )
     values (#{objectId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{contentType,jdbcType=VARCHAR}, 
-      #{size,jdbcType=DOUBLE}, #{dataId,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, 
+      #{size,jdbcType=DECIMAL}, #{dataId,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, 
       #{createdDate,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP}, 
       #{updateBy,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}
       )
@@ -56,7 +56,7 @@
     set object_id = #{objectId,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},
       content_type = #{contentType,jdbcType=VARCHAR},
-      `size` = #{size,jdbcType=DOUBLE},
+      `size` = #{size,jdbcType=DECIMAL},
       data_id = #{dataId,jdbcType=VARCHAR},
       image_url = #{imageUrl,jdbcType=VARCHAR},
       created_date = #{createdDate,jdbcType=TIMESTAMP},

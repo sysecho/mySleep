@@ -24,6 +24,10 @@
 <!-- Latest compiled and minified Locales -->
 <script src="/common/plugin/bootstraptable/bootstrap-table-zh-CN.min.js"></script>
 
+<link rel="stylesheet" href="/common/plugin/layer/theme/default/layer.css">
+
+<script src="/common/plugin/layer/layer.js"></script>
+
 <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
 <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
 <!--[if lt IE 9]>
@@ -33,7 +37,152 @@
 </head>
 <body>
 	<div style="margin: 1vh 2vh 1vh 2vh">
-		<h1>声音管理</h1>
+		<h1>Voice Center</h1>
+		
+		<div class="panel panel-default">
+		  <div class="panel-body">
+		    <form class="form-inline"  action="javascript:void(0);" method="post" enctype="multipart/form-data">
+			  <div class="form-group">
+			    <input type="file" name="file">
+			  </div>
+			  <button type="button" role="button" class="btn btn-primary" onclick="upload();">上传</button>
+			</form>
+		  </div>
+		</div>
+		<hr>		
+		<div>
+			<table id="myVoice"></table>
+		</div>
 	</div>
+	<script type="text/javascript">
+	
+	$(function(){
+		init();
+	});
+	
+	function init(){
+		$('#myVoice').bootstrapTable({
+	        url: '/voice/voices',
+
+	        uniqueId: 'id',
+	        
+	        toolbar:'#toolbar',
+
+	        pagination:true,
+	        
+	        showRefresh:true,
+	        
+			showColumns:true,
+
+	        sortOrder: "asc",
+	        
+	        sidePagination: "server", //服务端分页 server
+
+	        paginationPreText: '上一页',
+
+	        paginationNextText: '下一页',
+
+	        queryParams: function (params) {
+	            return {
+	            	pageNo: params.offset/params.limit+1,
+	            	pageSize: params.limit
+	            };
+	        },
+	        pageList: [10, 50, 100, 200, 500],
+
+	        columns: [{
+	        	field:'name',
+	        	title:'文件名',
+	        },{
+	            field: 'contentType',
+	            title: 'ContentType'
+			},{
+				field:'size',
+				title:'大小'
+			},{
+	            field: 'imageUrl',
+	            title: '图片地址'
+	        }, {
+	            field: 'sort',
+	            title: '排序'
+	        },{
+				field: 'createdDate',
+				title: '上传日期'
+			},{
+				field: '',
+				title: 'oper',
+				formatter: operateFormatter
+			}]
+	    });	
+	}
+	
+	function operateFormatter(value, row, index) {
+		return '<button type="button" class="btn btn-danger btn-xs" onclick="remove('+row.id+');"> delete</button> &nbsp;<button type="button" class="btn btn-info btn-xs" onclick="play('+row.id+');"><span class="glyphicon glyphicon-play" aria-hidden="true"></span>play</button>';
+	}
+	
+	function remove(id){
+		
+		layer.confirm('确认删除?', function(index){
+				$.get('/voice/remove',{id:id},function(data){
+					if(data.success){
+		                layer.closeAll('loading');
+						layer.msg(data.msg);
+						$('#myVoice').bootstrapTable('refresh', {silent: true});
+		            }else{
+		                layer.closeAll('loading');
+		                layer.alert(data.msg,{icon:2});
+		            }
+				});
+			  
+			  layer.close(index);
+			});    
+		
+	}
+	
+	function play(id){
+		layer.msg(id);
+	}
+	
+	function upload(){
+		//上传图片
+        var formData = new FormData();
+		
+		var file = $('input[name="file"]')[0].files[0];
+		
+		if(!file || file.size <= 0){
+			layer.alert("请选择需要上传的文件！",{icon:2});
+			return false;
+		}
+        formData.append('file',file);
+        layer.load(1, {
+              shade: [0.1,'#fff'] //0.1透明度的白色背景
+        });
+        
+        
+        $.ajax({
+        	type: "POST", // 上传文件要用POST
+            url: "/voice/upload",
+            data:formData,
+            processData:false,
+            contentType:false,
+            success:function(data){
+            	 if(data.success){
+                     layer.closeAll('loading');
+            		 layer.msg(data.msg);
+            		 $('input[name="file"]').val('');
+					 $('#myVoice').bootstrapTable('refresh', {silent: true});
+                 }else{
+                     layer.closeAll('loading');
+                     layer.alert(data.msg,{icon:2});
+                 }
+            },
+            error:function(e){
+            	 layer.alert("网络错误，请刷新后重试！",{icon:2});
+            	 layer.closeAll('loading');
+            }
+        });
+        
+	}
+	</script>
 </body>
 </html>

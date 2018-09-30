@@ -1,5 +1,7 @@
 package com.sysecho.mysleep.voice.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,7 @@ public class VoiceService {
 	private VoiceMapper mapper;
 	
 	public int deleteByPrimaryKey(Integer id){
-		return this.deleteByPrimaryKey(id);
+		return this.mapper.deleteByPrimaryKey(id);
 	}
 	
 	public int insert(Voice record){
@@ -26,5 +28,9 @@ public class VoiceService {
 	
 	public Voice selectByPrimaryKey(Integer id){
 		return this.mapper.selectByPrimaryKey(id);
+	}
+	
+	public List<Voice> selectAll(){
+		return this.mapper.selectAll();
 	}
 }

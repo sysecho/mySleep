@@ -1,5 +1,6 @@
 package com.sysecho.mysleep.voice.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Voice {
@@ -11,7 +12,7 @@ public class Voice {
 
     private String contentType;
 
-    private Double size;
+    private BigDecimal size;
 
     private String dataId;
 
@@ -24,6 +25,10 @@ public class Voice {
     private Date updateDate;
 
     private Integer updateBy;
+    
+    private Integer sort;
+    
+    private String remark;
 
     public Integer getId() {
         return id;
@@ -57,11 +62,11 @@ public class Voice {
         this.contentType = contentType == null ? null : contentType.trim();
     }
 
-    public Double getSize() {
+    public BigDecimal getSize() {
         return size;
     }
 
-    public void setSize(Double size) {
+    public void setSize(BigDecimal size) {
         this.size = size;
     }
 
@@ -112,4 +117,21 @@ public class Voice {
     public void setUpdateBy(Integer updateBy) {
         this.updateBy = updateBy;
     }
+
+	public Integer getSort() {
+		return sort;
+	}
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+    
 }
