@@ -1,4 +1,4 @@
-package com.sysecho.mysleep.entity;
+package com.sysecho.mysleep.user.entity;
 
 import java.io.Serializable;
 

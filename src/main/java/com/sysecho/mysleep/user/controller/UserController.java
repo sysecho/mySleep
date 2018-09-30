@@ -1,10 +1,9 @@
-package com.sysecho.mysleep.controller;
+package com.sysecho.mysleep.user.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
@@ -15,12 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.github.pagehelper.Page;
-import com.sysecho.mysleep.entity.UserEntity;
 import com.sysecho.mysleep.enums.UserSexEnum;
 import com.sysecho.mysleep.properties.MySleepProperties;
-import com.sysecho.mysleep.service.UserService;
+import com.sysecho.mysleep.user.entity.UserEntity;
+import com.sysecho.mysleep.user.service.UserService;
 
 @Controller
 public class UserController {
